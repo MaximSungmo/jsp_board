@@ -26,7 +26,7 @@
                 <textarea id="textAreaContent" name="content" rows="15" cols="80" style="width: 100%">${board.content}</textarea>
               </div>
               <div>
-                <button type="button" onclick="submitContents(this)">수정</button>
+                <button type="button" onclick="submitContents(this)" style="color:blue">수정</button>
               </div>
             </fieldset>
           </form>
@@ -34,6 +34,9 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/js/jindo.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
   <script>
   var form = document.w_form;
   var oEditors = [];

@@ -8,7 +8,6 @@ function initMenu(n1,n2,n3,n4,n5){
     
     // wrap
     var $wrap = $("#wrap");
-    
     // gnb 정보
     var $gnb = $("#gnb");
     

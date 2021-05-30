@@ -21,6 +21,9 @@ public class BoardDeleteAction implements Action {
     String sessionId = (String) session.getAttribute("id");
     
     int result2 = dao.checkId(num, sessionId);
+    if(sessionId.equals("admin")) {
+      result2 = 1;
+    }
     
     if (result2 == 1) {      
       int result = dao.delete(num);

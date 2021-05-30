@@ -14,13 +14,14 @@ public class BoardDAO {
 	private ResultSet rs;
 	
 	public int insert(BoardVO board) {
-		String SQL = "INSERT INTO board(title, content, writedate, id, readcount) VALUE(?,?,now(),?,0)";
+		String SQL = "INSERT INTO board(title, content, writedate, id, readcount, category_num) VALUE(?,?,now(),?,0,?)";
 		Connection conn= DBManager.getConnection();
-		try {
+		try {			
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
 			pstmt.setString(3, board.getId());
+			pstmt.setInt(4, board.getCategoryNum());
 			pstmt.executeUpdate();
 			return 1;
 		} catch (Exception e) {

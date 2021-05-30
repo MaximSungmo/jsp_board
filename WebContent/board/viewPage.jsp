@@ -13,11 +13,17 @@
       <div id="contbody" class="clearfix">
         <%@ include file="/layout/lnb.jsp"%>
         <div id="contentcore" class="excludeSearch">
-          <div>
-            <c:if test="${board.id eq sessionScope.id}">
+          <div>          
+          <c:choose>
+            <c:when test="${sessionScope.id eq 'admin'}">             
+              <a style="color: blue;" href="<%=request.getContextPath()%>/board?cmd=board_delete&num=${board.num}">삭제</a>
+            </c:when>
+            <c:when test="${board.id eq sessionScope.id} ">
               <a style="color: blue;" href="<%=request.getContextPath()%>/board?cmd=board_update&num=${board.num}">수정</a>
               <a style="color: blue;" href="<%=request.getContextPath()%>/board?cmd=board_delete&num=${board.num}">삭제</a>
-            </c:if>
+            </c:when>            
+          </c:choose>       
+             
           </div>
           <div class="boardWrap">
             <table class="board-view">
@@ -57,9 +63,8 @@
     function addDiv(renum, num, id, recontent){
       var newDiv = document.createElement('div');
       newDiv.className = 'media mb-4';
-      newDiv.innerHTML = "<a href='<%=request.getContextPath()%>/reboard?cmd=reboard_delete&renum="+renum+"&num="+num+"'><img class='d-flex mr-3 rounded-circle' src='<%=request.getContextPath()%>
-                      /img/clear.png'></a><div class='media-body'><h5 class='mt-0'>" + id + "</h5>" + recontent + "</div>";
-                        document.getElementById('reply').prepend(newDiv);
+      newDiv.innerHTML = "<a href='<%=request.getContextPath()%>/reboard?cmd=reboard_delete&renum="+renum+"&num="+num+"'><img class='d-flex mr-3 rounded-circle' src='<%=request.getContextPath()%>/img/clear.png'></a><div class='media-body'><h5 class='mt-0'>" + id + "</h5>" + recontent + "</div>"; 
+      document.getElementById('reply').prepend(newDiv);
                       }
 
                       function sendReply() {

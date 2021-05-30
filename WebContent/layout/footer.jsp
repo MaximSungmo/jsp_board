@@ -5,7 +5,6 @@
 <div id="footer">
   <div class="footerInner">
     <h1 class="logo">
-      <img src="/include/health/image/common/logo_foot.png" alt="">
     </h1>
     <ul class="fnb clearfix">
       <li><a target="_blank" title="새창에서 열림">개인정보처리방침</a></li>
@@ -19,18 +18,23 @@
       <cite>Copyright ⓒ Seongnam City. All Rights Reserved.</cite>
     </div>
   </div>
-  <script type="text/javascript">
-      $(function() {
-        $("#btnTopScroll").click(function() {
-          $("body,html").animate({
-            scrollTop : 0
-          }, 300);
-          return false;
-        });
-      });
-    </script>
-  <script type="text/javascript">
-      initMenu(6, 1, 0, 0, 0);
-    </script>
 </div>
+  
+  <script type="text/javascript">   
+  $("#gnb > li > ul > li > a").each(function(i,v){
+      $(v).removeClass("current")
+  })
+  $("#lnb > li > a").each(function(i,v){
+   $(v).removeClass('current'); 
+  })  
+  initMenu(6, <%=request.getAttribute("categoryNum") %>+1, 0, 0, 0);
+  $(function() {
+    $("#btnTopScroll").click(function() {
+      $("body,html").animate({
+        scrollTop : 0
+      }, 300);
+      return false;
+    });
+  });
+  </script>
 <!-- //footer -->

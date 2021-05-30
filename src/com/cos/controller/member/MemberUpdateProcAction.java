@@ -29,7 +29,7 @@ public class MemberUpdateProcAction implements Action {
 		member.setId(id);
 		member.setPassword(password);
 		member.setUsername(username);
-		member.setEmail(email);
+		member.setEmail(email);		
 		
 		int result = dao.update(member);
 		if(result == 1) {

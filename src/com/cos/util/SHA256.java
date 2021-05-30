@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.Arrays;
 
 public class SHA256 {
-	public static String getEncrypt(String source, String salt) {
+  public static String getEncrypt(String source, String salt) {
         return getEncrypt(source, salt.getBytes());
     }
     
@@ -41,13 +41,13 @@ public class SHA256 {
     public static String generateSalt() {
         Random random = new Random();
         byte[] salt = new byte[8];
-        //256개의 임의의 숫자. -128 ~ +127 까지 생성
+        //256媛쒖쓽 �엫�쓽�쓽 �닽�옄. -128 ~ +127 源뚯� �깮�꽦
         random.nextBytes(salt); 
         //System.out.println(Arrays.toString(salt));
         
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < salt.length; i++) {
-            // byte 값을 Hex 값으로 바꾸기.
+            // byte 媛믪쓣 Hex 媛믪쑝濡� 諛붽씀湲�.
             sb.append(String.format("%02x",salt[i]));
         }
         

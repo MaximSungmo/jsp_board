@@ -9,6 +9,8 @@ CREATE TABLE member (
     salt varchar(200)
 );
 
+insert into member values ('admin', '822bc3bf317ba5479977d5cafce68922319bb7e63805ff98e4438ace5e286390', '°ü¸®ÀÚ', 'admin@admin.com', 1, '22b77a439ba2eba8');
+
 DROP TABLE board;
 CREATE TABLE board (
 	num int AUTO_INCREMENT primary key,

@@ -7,6 +7,12 @@
       <div id="siteMenu" class="siteMenu">
         <ul class="memUtil clearfix">
           <li><a href="index.jsp">성남시청 홈</a></li>
+        <c:choose>
+          <c:when test="${sessionScope.id=='admin'}">
+            <li><a class="nav-item nav-link" href="<%=request.getContextPath()%>/member?cmd=admin">관리자</a></li>
+          </c:when>
+        </c:choose>
+
           <li class="langs"><a href="#open" title="언어 선택" class="button">Language</a>
             <ul>
               <li id="kr" style="display: none;"><a href="https://www.seongnam.go.kr/health" title="새창에서 열림" target="_blank" class="kr">한국어</a></li>
@@ -22,10 +28,11 @@
             </c:otherwise>
           </c:choose>
         </ul>
+
       </div>
     </div>
     <h1 id="logo" class="Health">
-      <a href="/health/"><img src="images/logo.png" alt="테스트보건소(수정구/중원구/분당구)"></a>
+      <a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/images/logo.png" alt="테스트보건소(수정구/중원구/분당구)"></a>
     </h1>
     <!-- Top SearchBox -->
     <a href="#searchOpen" id="btnSearchTop" title="검색창 열기"><span>검색창열기</span></a>
@@ -51,7 +58,7 @@
     <a href="#open" id="mobileIndexOpen"><span>메뉴 열기</span></a> <a href="#back" id="blackBG"><span class="blind">이전으로 돌아가기</span></a>
     <nav id="gnbNav">
       <div id="mobileIndexClose">
-        <img src="images/logo.png" class="logo" alt="테스트보건소(수정구/중원구/분당구)"> <a href="#close" class="close"><span>메뉴 닫기</span></a>
+        <img src="<%=request.getContextPath()%>/images/logo.png" class="logo" alt="테스트보건소(수정구/중원구/분당구)"> <a href="#close" class="close"><span>메뉴 닫기</span></a>
       </div>
       <ul id="gnb" class="clearfix" style="overflow: hidden;">
         <li id="gnb1" class="health_top_menu"><a href="#">보건소 안내</a>
@@ -103,14 +110,14 @@
           <ul style="display: none;">
             <li id="gnb6_1"><a href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=0&categoryNum=0" class="current">새소식</a></li>
             <li id="gnb6_2"><a href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=0&categoryNum=1">자주묻는질문</a></li>
-            <li id="gnb6_3"><a href="/health/1001404/30330/bbsList.do">민원상담실</a></li>
-            <li id="gnb6_4"><a href="/health/1001532/30353/bbsList.do">모기신고센터</a></li>
-            <li id="gnb6_5"><a href="/health/1001533/30354/bbsList.do">감염병소식</a></li>
-            <li id="gnb6_6"><a href="/health/1001405/30331/bbsList.do">인플루엔자위탁병의원</a></li>
-            <li id="gnb6_7"><a href="/health/1002127/30468/bbsList.do">코로나19예방접종</a></li>
-            <li id="gnb6_8"><a href="/health/1001407/30333/bbsList.do">자료실</a></li>
-            <li id="gnb6_9"><a href="/health/1001408/30334/bbsList.do">모집공고</a></li>
-            <li id="gnb6_10"><a href="/health/1001409/11008/contents.do">사이트맵</a></li>
+            <li id="gnb6_3"><a href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=0&categoryNum=2">민원상담실</a></li>
+            <li id="gnb6_4"><a>모기신고센터</a></li>
+            <li id="gnb6_5"><a>감염병소식</a></li>
+            <li id="gnb6_6"><a>인플루엔자위탁병의원</a></li>
+            <li id="gnb6_7"><a>코로나19예방접종</a></li>
+            <li id="gnb6_8"><a>자료실</a></li>
+            <li id="gnb6_9"><a>모집공고</a></li>
+            <li id="gnb6_10"><a>사이트맵</a></li>
           </ul></li>
       </ul>
       <div id="submenuArea" style="display: none;"></div>

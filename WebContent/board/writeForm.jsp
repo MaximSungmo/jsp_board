@@ -14,6 +14,7 @@
         <%@ include file="/layout/lnb.jsp"%>
         <div id="contentcore" class="excludeSearch">
           <form name="w_form" method="POST" action="<%=request.getContextPath()%>/board?cmd=board_write">
+          <input type="hidden" value='<%= request.getParameter("categoryNum") %>' name="categoryNum">
             <h2>등록</h2>            
             <fieldset>
               <legend>Update</legend>
@@ -26,15 +27,18 @@
                 <textarea id="textAreaContent" name="content" rows="15" cols="80" style="width: 100%"></textarea>
               </div>
               <div>
-                <button type="button" onclick="submitContents(this)">등록</button>
+                <button type="button" onclick="submitContents(this)" style="color:blue">등록</button>
               </div>
             </fieldset>          
           </form>
         </div>
       </div>
-    </div>
+    </div>    
   </div>
   <!-- Naver Smart Editor 2 -->
+  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/js/jindo.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
   <script>
 	var form = document.w_form;
   var oEditors = [];
@@ -62,8 +66,7 @@
    
   // textArea에 이미지 첨부
   function pasteHTML(filepath){
-      var sHTML = '<img src="<%=request.getContextPath()%>
-      /editor/upload/' + filepath + '">';
+      var sHTML = '<img src="<%=request.getContextPath()%> /editor/upload/' + filepath + '">';
         oEditors.getById["textAreaContent"].exec("PASTE_HTML", [ sHTML ]);
       }
     </script>

@@ -159,13 +159,16 @@ public class MemberDAO {
 	
 	public int update(MemberVO member) {
 		String SQL = "UPDATE member SET password = ?, "
-				+ "email = ? WHERE id = ?";
+				+ "email = ?, username = ? WHERE id = ?";
+		
+		System.out.println(SQL);
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, member.getPassword());			
-			pstmt.setString(2, member.getEmail());
-			pstmt.setString(3, member.getId());
+			pstmt.setString(2, member.getEmail());			
+			pstmt.setString(3, member.getUsername());
+			pstmt.setString(4, member.getId());
 			pstmt.executeUpdate();
 			return 1;
 		} catch (Exception e) {

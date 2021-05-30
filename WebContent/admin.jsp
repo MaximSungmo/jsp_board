@@ -26,9 +26,7 @@
               </ul>
             </div>
             <!--Real Contents Start-->
-            <c:if test="${request.getAttribute('categoryNum') == '0'}">
             <a href="<%=request.getContextPath()%>/board/writeForm.jsp?categoryNum=<%=request.getAttribute("categoryNum")%>" style="color: blue">글쓰기</a>
-            </c:if>
             <form name="listForm" id="listForm" method="get" action="">
               <input type="hidden" name="currentPage" value="1"> <input type="hidden" name="searchSelect" value=""> <input type="hidden" name="searchWord" value=""> <input type="hidden" name="searchOrganDeptCd" value=""> <input type="hidden" name="searchCategory" value=""> <input type="hidden" name="idx" value="resultView.idx">
               <!--
@@ -59,7 +57,7 @@
                       <th scope="col">등록일</th>
                       <th scope="col">조회수</th>
                       <th scope="col">분류</th>
-                      <th scope="col">작성자</th>
+                      <th scope="col">작성부서</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -127,7 +125,7 @@
   </div>
   <script type="text/javascript">     
   	function PageMove(page){
-  		location.href = "<%=request.getContextPath()%>/board?cmd=board_list&page="+page+"&categoryNum="+<%=request.getAttribute("categoryNum")%>
+  		location.href = <%=request.getContextPath()%>+"/board?cmd=board_list&page="+page+"&categoryNum="+<%=request.getAttribute("categoryNum")%>
   	}      
   	</script>
 </body>

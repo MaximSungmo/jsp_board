@@ -18,50 +18,7 @@
 <!-- js 파일 -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.alphanum.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/gnb.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/validation.js"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
-<script type="text/javascript">
-  $(function() {
-    $("#searchWord").keypress(function(e) {
-      var code = e.keyCode || e.which;
-      if (code == 13) {
-        searchList();
-        return false;
-      }
-    });
-
-    $("#searchBtn").click(function() {
-      searchList();
-    });
-
-    $("#categoryBtn").click(function() {
-      $("input[name='currentPage']").val(1);
-      $("#listForm").attr("action", "/health/1001402/30328/bbsList.do").submit();
-    });
-  });
-
-  function searchList() {
-    $("input[name='currentPage']").val(1);
-    $("#searchForm").attr("action", "/health/1001402/30328/bbsList.do").submit();
-  }
-
-  function dataView(idx) {
-    $("input[name='idx']").val(idx);
-    $("#listForm").attr("action", "/health/1001402/30328/bbsView.do").submit();
-  }
-
-  function searchCategory(category) {
-    $("input[name='currentPage']").val(1);
-    $("input[name='searchCategory']").val(category);
-    $("#listForm").attr("action", "/health/1001402/30328/bbsList.do").submit();
-  }
-
-  function setPageLink(pageNo) {
-    $("input[name='currentPage']").val(pageNo);
-    $("#searchForm").attr("action", "/health/1001402/30328/bbsList.do").submit();
-  }
-</script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/gnb.js"></script>
 </head>
