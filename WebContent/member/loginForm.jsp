@@ -1,62 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>Cos Blog</title>
-<!-- Bootstrap core CSS -->
-<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
-<!-- Custom styles for this template -->
-<link href="<%=request.getContextPath()%>/css/blog-home.css" rel="stylesheet">
-<!-- Bootstrap core JavaScript -->
-<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/validation.js"></script>
-</head>
+<%@ include file="/layout/header.jsp"%>
 <body>
-  <!-- Nav Include -->
-  <jsp:include page="/include/header.jsp" />
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <!-- Blog Entries Column -->
-      <div class="col-md-8">
-        <div class="content-section">
-          <form method="POST" action="<%=request.getContextPath()%>/member?cmd=member_login" onsubmit="return hangulCheck(this)">
-            <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Login</legend>
-              <div class="form-group">
-                <label class="form-control-label">ID</label> <input class="form-control form-control-lg" type="text" name="id" maxlength="20" required autofocus>
-              </div>
-              <div class="form-group">
-                <label class="form-control-label">Password</label> <input class="form-control form-control-lg" type="password" name="password" maxlength="20" required>
-              </div>
-              <div class="border-top pt-3">
-                <small class="text-muted"> Remember Me? <input type="checkbox" name="idsave" value="on">
-                </small>
-              </div>
-              <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Login</button>
-              </div>
-            </fieldset>
+  <div id="wrap">
+    <div id="topheader">
+      <div id="indexColumn">
+        <%@ include file="/layout/gnb.jsp"%>
+      </div>
+    </div>
+    <div id="middle">
+      <div id="contbody" class="clearfix">
+        <div id="contentcore" class="contentcore">
+          <h2 class="gnb6">로그인</h2>
+          <form name="form" id="form" method="POST" action="<%=request.getContextPath()%>/member?cmd=member_login" onsubmit="return hangulCheck(this)">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-content: center">
+              <form method="POST" action="<%=request.getContextPath()%>/member?cmd=member_login" onsubmit="return hangulCheck(this)">
+                <label class="form-control-label">ID</label> <input type="text" name="id" maxlength="20" required autofocus>
+                <label class="form-control-label">Password</label> <input type="password" name="password" maxlength="20" required>
+                <small class="text-muted"> Remember Me? <input type="checkbox" name="idsave" value="on"></small>
+                <br>
+                <button type="submit" style="background-color: slategray; color: white">로그인</button>
+              </form>
+            </div>
           </form>
         </div>
       </div>
-      <!-- SideBar Include -->
-      <jsp:include page="/include/aside.jsp" />
     </div>
-    <!-- /.row -->
+    <%@ include file="/layout/footer.jsp"%>
   </div>
-  <!-- /.container -->
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-    </div>
-    <!-- /.container -->
-  </footer>
 </body>
 </html>

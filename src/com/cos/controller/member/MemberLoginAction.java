@@ -19,7 +19,7 @@ public class MemberLoginAction implements Action {
   
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String url = "index.jsp";
+    String url = "board.jsp";
     
     MemberDAO dao = new MemberDAO();
     MemberVO member = new MemberVO();
@@ -47,6 +47,7 @@ public class MemberLoginAction implements Action {
     if (result == 1) {
       HttpSession session = request.getSession();
       session.setAttribute("id", member.getId());
+      Script.moving(response, url, url);
       Script.moving(response, "로그인 성공", url);
     } else if (result == 2) {
       HttpSession session = request.getSession();

@@ -12,15 +12,15 @@
 <meta id="metaType" property="og:type" content="website">
 <meta id="metaImage" property="og:image" content="http://www.seongnam.go.kr/include/cmm_new/image/common/sns_noimg.gif">
 <meta id="metaUrl" property="og:url" content="https://www.seongnam.go.kr/health/1001402/30328/bbsList.do?searchSelect=&amp;searchCategory=&amp;currentPage=1&amp;searchOrganDeptCd=&amp;searchWord=&amp;idx=resultView.idx&amp;">
-<link rel="shortcut icon" href="/include/health/image/common/ico_sns_favicon.png">
 <title>새소식 : 테스트보건소</title>
 <!-- css 파일  -->
-<link href="/Board/css/sub.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/sub.css" rel="stylesheet" type="text/css">
 <!-- js 파일 -->
-<script type="text/javascript" src="/Board/js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="/Board/js/jquery.alphanum.js"></script>
-<script type="text/javascript" src="/Board/js/gnb.js"></script>
-<script type="text/javascript" src="/Board/js/common.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.alphanum.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/gnb.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/js/validation.js"></script>
 <script type="text/javascript">
   $(function() {
     $("#searchWord").keypress(function(e) {

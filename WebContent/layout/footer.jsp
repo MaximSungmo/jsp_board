@@ -29,5 +29,8 @@
         });
       });
     </script>
+  <script type="text/javascript">
+      initMenu(6, 1, 0, 0, 0);
+    </script>
 </div>
 <!-- //footer -->

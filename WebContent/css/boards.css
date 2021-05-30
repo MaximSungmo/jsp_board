@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+.boardWrap {margin:5px 0}
+/* board search */
+#pageSearch {margin:0 0 30px;border:5px solid #edf8f9}
+.pageSearch,#pageSearch > p {overflow:hidden;padding:15px;text-align:center}
+.pageSearch input[type="text"] {width:200px;padding:0 5px}
+.pageSearch .field {overflow:hidden;position:relative;clear:both;text-align:left}
+.pageSearch .field + .field,.pageSearch .field + .schForm {margin-top:5px}
+.pageSearch .item {display:inline-block;overflow:hidden;position:relative;clear:both;vertical-align:middle}
+.pageSearch .schForm {display:inline-block;vertical-align:middle}
+.pageSearch .fl {margin-left:4px}
+
+
+/* paging */
+.pagingWrap,.pageAbs,.pgeAbs {overflow:hidden;position:relative;min-height:30px;margin-top:20px;padding:2px 0;text-align:center}
+.paging img {vertical-align:top}
+.paging span,.paging a {display:inline-block;width:27px;height:27px;margin:0 2px;line-height:27px;text-align:center;vertical-align:top;border:1px solid #ddd}
+.paging span.current {width:29px;height:29px;line-height:29px;font-weight:600;color:#fff;border:none}
+.paging a:hover,.paging a:focus,.paging a:active {background-color:#f5f5f5}
+.paging .btn-paging {width:27px;height:27px;line-height:27px;border:1px solid #ddd;background:url(/Board/images/arr_sp.png) 0 0 no-repeat; text-indent:100%; white-space:nowrap; overflow:hidden;}
+.paging .btn-paging.first {background-position:0 2px}
+.paging .btn-paging.prev {margin-right:5px;background-position:0 -29px}
+.paging .btn-paging.next {margin-left:5px;background-position:0 -89px}
+.paging .btn-paging.last {background-position:0 -58px}
+.pagingWrap .btn {display:block;margin-top:30px} /* 글쓰기(등록)버튼 */
+.pagingWrap + form #pageSearch,.pagingWrap ~ #pageSearch {margin-top:30px}
+
+
+/* basic board list */
+.emptyNote {width:100% !important;padding:10px 0 !important;text-align:center;border-bottom:1px solid #ddd;box-sizing:border-box}
+.board-list {table-layout:fixed;border-top:2px solid #666;border-bottom:1px solid #ddd;empty-cells:show}
+.board-list th,.board-list td {padding:10px 3px;text-align:center;border-top:1px solid #ddd}
+.board-list thead th {font-weight:normal}
+.board-list thead tr:first-child th {border-top:0}
+.board-list tbody tr:first-child td {border-top:1px solid #666}
+.board-list td.title,.board-list td.ta_l {padding:10px 5px;text-align:left}
+.board-list td.title a {display:inline-block;overflow:hidden;max-width:93%;vertical-align:top;text-overflow:ellipsis;white-space:nowrap}
+.board-list td.title a:hover,.board-list td.title a:focus {text-decoration:underline}
+.board-list td.title img,.board-list td.title b {display:inline-block;margin:5px 0 0 5px;vertical-align:top}
+.board-list td.sort {padding:10px 5px;text-align:left;color:#006aaa}
+.board-list td.chkCell {padding:5px 8px;background-color:#f4f4f4}
+.board-list td.emptyNote {border-bottom:0}
+
+.board-list .ico_noti {display:inline-block; padding:2px 8px 3px; background-color:#00a0b0; color:#fff; border-radius:25px; font-size:13px; line-height:1;}
+.board-list .ico_new {display:inline-block; padding:2px 8px 3px; background-color:#3385c2; color:#fff; border-radius:25px; font-size:12px; line-height:1;}
+
+/* basic board view */
+span.essential {padding:0 2px;font-weight:bold;color:#eb6100}
+.readonly {background-color:#f8f8f8}
+.board-view {/*table-layout:fixed;*/border-top:2px solid #666;empty-cells:show}
+.board-view th,.board-view td {padding:10px;text-align:left;border-bottom:1px solid #e4e4e4}
+.board-view tr:first-child th,.board-view tr:first-child td {border-top:0}
+.board-view tbody + tbody tr:first-child th,.board-view tbody + tbody tr:first-child td {border-top:1px solid #ddd}
+.board-view th {font-weight:normal;color:#555;word-break:keep-all;background-color:#fafbfd}
+.board-view th[rowspan] {border-right:1px solid #e4e4e4}
+.board-view th.title {font-size:16px;text-align:center;border-bottom:1px solid #666;background-color:#fff}
+.board-view th.title .tblBtn {font-weight:normal;font-size:13px;vertical-align:top}
+.board-view td {padding:10px 0 10px 10px;text-align:left}
+.board-view td textarea {width:100%;height:80px;padding:5px;resize:none;vertical-align:top;box-sizing:border-box}
+.board-view td label {display:inline-block;margin-right:10px;vertical-align:middle}
+.board-view td label:last-child {margin-right:0}
+.board-view td .form-ele ~ label {line-height:30px}
+.board-view td .form-ele ~ label:nth-of-type(1) {margin-left:15px}
+.board-view td.content {padding:15px 10px;vertical-align:top}
+.board-view td.content img {max-width:100%;height:auto !important}
+.board-view th + td.content,.board-view th + td.textarea {padding:10px 0 10px 10px}
+.board-view td.textarea {padding:10px 0}
+.board-view td.textarea textarea {width:100%;height:300px;padding:5px}
+.board-view .attachfile + .attachfile {margin-top:5px}
+.board-view .attachfile span:first-child {margin-left:4px}
+.board-view .attachfile img{margin-top:3px;vertical-align:top}
+.board-view .attachfile .btn a {padding:1px 8px 1px;background-position:4px 50%}
+.board-view .attachfile #file_data_ul ~ .btn a {min-width:60px;height:32px;padding:0 8px;font-size:13px;line-height:32px;box-sizing:border-box;background-image:none}
+.board-view .attachfile .view a {background-color:#3f5f9c}
+.board-view .inpFile {width:100%;margin-bottom:5px;border:1px solid #e4e4e4}
+.board-view td.emptyNote {text-align:center}
+.board-view-lock {padding:50px 30px;border:2px solid #e4e4e4}
+.board-view-lock .passwordForm {position:relative;max-width:400px;margin:0 auto;padding:0 70px 0 100px;box-sizing:border-box}
+.board-view-lock .passwordForm .tit {position:absolute;top:0;left:0;line-height:38px}
+.board-view-lock .passwordForm .btn {position:absolute;top:0;right:0}
+.board-view-lock .passwordForm .btn a {width:60px;padding:0;line-height:38px}
+
+/* next/prev board */
+.boardWrap + .prevNext {margin-top:30px}
+dl.prevNext {overflow:hidden;position:relative;padding-left:100px;border-top:2px solid #666}
+dl.prevNext dt.prev,.prevNext dt.prev + dd.listx {border-bottom:1px solid #c9c9c9}
+dl.prevNext dt,.prevNext dd {padding:10px 20px}
+dl.prevNext dt {position:absolute;left:0;width:100px;padding:10px 0;color:#555;text-align:center;background-color:#fafbfd}
+dl.prevNext dd {overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prevNext a:hover,.prevNext a:focus {text-decoration:underline}
+table.prevNext {border-top:2px solid #666}
+table.prevNext th,table.prevNext td {padding:10px 20px;border-bottom:1px solid #e4e4e4}
+table.prevNext th {width:60px;font-weight:normal;background-color:#fafbfd}
+
+.pageSearch input[type="text"] {width:360px}
+.pagingWrap .btn {margin-top:0;position:absolute;bottom:0;right:0} /* 글쓰기(등록)버튼 */

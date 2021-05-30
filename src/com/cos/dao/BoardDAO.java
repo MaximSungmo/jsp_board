@@ -31,23 +31,26 @@ public class BoardDAO {
 		
 		return -1;
 	}
-	public List<BoardVO> select_paging(int pageNum){
-		String SQL = "SELECT * FROM board ORDER BY num DESC limit ?, 3";
+	public List<BoardVO> select_paging(int categoryNum, int pageNum){
+		String SQL = "SELECT b.*, member.username as username FROM board b JOIN member ON b.id = member.id WHERE category_num = ? ORDER BY num DESC limit ?, 10";
 		Connection conn = DBManager.getConnection();
 		
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, pageNum);
+			pstmt.setInt(1, categoryNum);
+			pstmt.setInt(2, pageNum);
 			rs = pstmt.executeQuery();
 			List<BoardVO> list = new ArrayList<>();
 			while(rs.next()) {
 				BoardVO board = new BoardVO();
 				board.setNum(rs.getInt("num"));
 				board.setId(rs.getString("id"));
+				board.setUsername(rs.getString("username"));
 				board.setTitle(rs.getString("title"));
 				board.setContent(rs.getString("content"));
 				board.setWritedate(rs.getString("writedate"));
 				board.setReadcount(rs.getInt("readcount"));
+				board.setCategoryNum(rs.getInt("category_num"));
 				list.add(board);
 			}
 			return list;

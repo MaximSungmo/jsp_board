@@ -11,8 +11,16 @@
             <ul>
               <li id="kr" style="display: none;"><a href="https://www.seongnam.go.kr/health" title="새창에서 열림" target="_blank" class="kr">한국어</a></li>
             </ul></li>
-          <li><a href="<%=request.getContextPath()%>/member/joinForm.jsp" class="gnbJoin">회원가입</a></li>
-          <li><a href="<%=request.getContextPath()%>/member/loginForm.jsp" class="gnbLogin">로그인</a></li>
+          <c:choose>
+            <c:when test="${empty sessionScope.id}">
+              <li><a href="<%=request.getContextPath()%>/member/joinForm.jsp" class="gnbJoin">회원가입</a></li>
+              <li><a href="<%=request.getContextPath()%>/member/loginForm.jsp" class="gnbLogin">로그인</a></li>
+            </c:when>
+            <c:otherwise>
+              <li><a class="nav-item nav-link" href="<%=request.getContextPath()%>/member?cmd=member_update">회원정보</a></li>
+              <li><a class="nav-item nav-link" href="<%=request.getContextPath()%>/member?cmd=member_logout">로그아웃</a></li>
+            </c:otherwise>
+          </c:choose>
         </ul>
       </div>
     </div>
@@ -91,10 +99,10 @@
             <li id="gnb5_2"><a class="disabled">산모신생아건강관리기관</a></li>
             <li id="gnb5_3"><a class="disabled">자동심장충격기정보</a></li>
           </ul></li>
-        <li id="gnb6" class="health_top_menu fbC"><a href="/health/1001402/30328/bbsList.do">정보마당</a>
+        <li id="gnb6" class="health_top_menu fbC"><a href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=0&categoryNum=0">정보마당</a>
           <ul style="display: none;">
-            <li id="gnb6_1"><a href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=0" class="current">새소식</a></li>
-            <li id="gnb6_2"><a href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=0">자주묻는질문</a></li>
+            <li id="gnb6_1"><a href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=0&categoryNum=0" class="current">새소식</a></li>
+            <li id="gnb6_2"><a href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=0&categoryNum=1">자주묻는질문</a></li>
             <li id="gnb6_3"><a href="/health/1001404/30330/bbsList.do">민원상담실</a></li>
             <li id="gnb6_4"><a href="/health/1001532/30353/bbsList.do">모기신고센터</a></li>
             <li id="gnb6_5"><a href="/health/1001533/30354/bbsList.do">감염병소식</a></li>

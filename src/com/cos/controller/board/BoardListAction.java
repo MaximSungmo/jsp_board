@@ -17,20 +17,30 @@ import com.cos.util.Script;
 public class BoardListAction implements Action {
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String url = "main.jsp";
+    String url = "board.jsp";
     
-    BoardDAO dao = new BoardDAO();
+    BoardDAO dao = new BoardDAO();    
+    String categoryNum = request.getParameter("categoryNum");
+    if(categoryNum == null) {
+      categoryNum = "0";
+    }
+    System.out.println("categoryNum : " + categoryNum);
     
     int pageNum = 0;
     if (request.getParameter("pageNum") != null) {
       pageNum = Integer.parseInt(request.getParameter("pageNum"));
     }
     System.out.println("pageNum : " + pageNum);
-    List<BoardVO> list = dao.select_paging(pageNum);
-    List<BoardVO> hotpost = dao.hotpost();
+    
+    List<BoardVO> list = dao.select_paging(Integer.parseInt(categoryNum), pageNum);    
     
     if (list.isEmpty()) {
-      Script.moving(response, "DB 에러");
+      request.setAttribute("list", null);
+      request.setAttribute("pageNum", pageNum);
+      request.setAttribute("categoryNum", categoryNum);
+      RequestDispatcher dis = request.getRequestDispatcher(url);
+      dis.forward(request, response);
+      
     } else {
       for (int i = 0; i < list.size(); i++) {
         String title = MyUtil.getReplace(list.get(i).getTitle());
@@ -44,7 +54,7 @@ public class BoardListAction implements Action {
       
       request.setAttribute("list", list);
       request.setAttribute("pageNum", pageNum);
-      request.setAttribute("hotpost", hotpost);
+      request.setAttribute("categoryNum", categoryNum);
       
       RequestDispatcher dis = request.getRequestDispatcher(url);
       dis.forward(request, response);
