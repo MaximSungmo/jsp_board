@@ -25,9 +25,8 @@
                 <li></li>
               </ul>
             </div>
-            <!--Real Contents Start-->
-            <c:if test="${request.getAttribute('categoryNum') == '0'}">
-            <a href="<%=request.getContextPath()%>/board/writeForm.jsp?categoryNum=<%=request.getAttribute("categoryNum")%>" style="color: blue">글쓰기</a>
+            <c:if test="${param.categoryNum != '0'}">
+              <a href="<%=request.getContextPath()%>/board/writeForm.jsp?categoryNum=<%=request.getAttribute("categoryNum")%>" style="color: blue">글쓰기</a>
             </c:if>
             <form name="listForm" id="listForm" method="get" action="">
               <input type="hidden" name="currentPage" value="1"> <input type="hidden" name="searchSelect" value=""> <input type="hidden" name="searchWord" value=""> <input type="hidden" name="searchOrganDeptCd" value=""> <input type="hidden" name="searchCategory" value=""> <input type="hidden" name="idx" value="resultView.idx">
