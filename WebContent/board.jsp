@@ -14,7 +14,7 @@
     </div>
     <div id="middle">
       <div id="contbody" class="clearfix">
-        <%@ include file="/layout/lnb.jsp"%>
+        
         <div id="contentcore" class="excludeSearch">
           <div class="naviandtitle">
             <h3>새소식</h3>
