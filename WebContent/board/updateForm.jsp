@@ -1,77 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Cos Blog</title>
-  <!-- Bootstrap core CSS -->
-  <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="<%=request.getContextPath()%>/css/blog-home.css" rel="stylesheet">
-  <!-- Bootstrap core JavaScript -->
-  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-  <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
-<!-- Smart Editor -->
-	<script type="text/javascript" src="<%=request.getContextPath()%>/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/editor/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
-</head>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html lang="ko">
+<%@ include file="/layout/header.jsp"%>
 <body>
-	<!-- Nav Include -->
-	<jsp:include page="/include/header.jsp"/>
- 
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <!-- Blog Entries Column -->
-      <div class="col-md-8">
-     		<div class="content-section">
-     			<form name="w_form" method="POST" action="<%=request.getContextPath()%>/board?cmd=board_updateProc">
-     				<input type="hidden" name="num" value="${board.num}">
-     				<input type="hidden" name="id" value="${board.id}">
-     				<fieldset class="form-group">
-     					<legend class="border-bottom mb-4">Update</legend>
-     					<div class="form-group">
-     						<label class="form-control-label">Title</label>
-     						<input class="form-control form-control-lg" type="text" name="title"  value="${board.title}" required autofocus>
-     					</div>
-     					<div class="form-group">
-     						<label class="form-control-label">Content</label>
-     						<textarea id="textAreaContent" name="content" rows="15" cols="80" style="width:100%">${board.content}</textarea>
-     					</div>
-     					<div class="form-group">
-     						<button class="btn btn-outline-info" type="button" onclick="submitContents(this)">Update</button>
-     					</div>
-     				</fieldset>
-     			</form>
-     		</div>
+  <div id="wrap">
+    <div id="topheader">
+      <div id="indexColumn">
+        <%@ include file="/layout/gnb.jsp"%>
       </div>
-
-      <!-- SideBar Include -->
-		  <jsp:include page="/include/aside.jsp"/>
-		  	
     </div>
-    <!-- /.row -->
-
+    <div id="middle">
+      <div id="contbody" class="clearfix">
+        <%@ include file="/layout/lnb.jsp"%>
+        <div id="contentcore" class="excludeSearch">
+          <form name="w_form" method="POST" action="<%=request.getContextPath()%>/board?cmd=board_updateProc">
+            <input type="hidden" name="num" value="${board.num}"> <input type="hidden" name="id" value="${board.id}">
+            <fieldset>
+              <legend>Update</legend>
+              <div>
+                <label >Title</label> <br>
+                <input type="text" name="title" value="${board.title}" style="width:100%" required autofocus>
+              </div>
+              <div>
+                <label>Content</label>
+                <textarea id="textAreaContent" name="content" rows="15" cols="80" style="width: 100%">${board.content}</textarea>
+              </div>
+              <div>
+                <button type="button" onclick="submitContents(this)">수정</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-<!-- Naver Smart Editor 2 -->
-<script>
-	var form = document.w_form;
+  <script>
+  var form = document.w_form;
   var oEditors = [];
   nhn.husky.EZCreator.createInIFrame({
       oAppRef: oEditors,
@@ -97,11 +61,9 @@
    
   // textArea에 이미지 첨부
   function pasteHTML(filepath){
-      var sHTML = '<img src="<%=request.getContextPath()%>/editor/upload/'+filepath+'">';
-      oEditors.getById["textAreaContent"].exec("PASTE_HTML", [sHTML]);
-  }
-</script>
-
-
+      var sHTML = '<img src="<%=request.getContextPath()%>/editor/upload/' + filepath + '">';
+        oEditors.getById["textAreaContent"].exec("PASTE_HTML", [ sHTML ]);
+      }
+    </script>
 </body>
 </html>

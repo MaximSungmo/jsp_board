@@ -31,14 +31,15 @@ public class BoardDAO {
 		
 		return -1;
 	}
-	public List<BoardVO> select_paging(int categoryNum, int pageNum){
-		String SQL = "SELECT b.*, member.username as username FROM board b JOIN member ON b.id = member.id WHERE category_num = ? ORDER BY num DESC limit ?, 10";
+	public List<BoardVO> select_paging(int categoryNum, int page, int pageSize){
+		String SQL = "SELECT b.*, member.username as username FROM board b JOIN member ON b.id = member.id WHERE category_num = ? ORDER BY num DESC limit ?, ?";
 		Connection conn = DBManager.getConnection();
 		
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, categoryNum);
-			pstmt.setInt(2, pageNum);
+			pstmt.setInt(2, page);
+			pstmt.setInt(3, pageSize);
 			rs = pstmt.executeQuery();
 			List<BoardVO> list = new ArrayList<>();
 			while(rs.next()) {
@@ -62,6 +63,25 @@ public class BoardDAO {
 		return null;
 	}
 	
+	public int getTotalCount(int categoryNum) {	  
+	  String SQL = "SELECT count(*) FROM board WHERE category_num = ? ";
+    Connection conn = DBManager.getConnection();
+    try {
+      pstmt = conn.prepareStatement(SQL);
+      pstmt.setInt(1, categoryNum);
+      rs = pstmt.executeQuery();
+
+      if (rs.next()) {
+        return rs.getInt(1);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      DBManager.close(conn, pstmt, rs);
+    }
+    return 0;  	  
+	}
+	
 	// nextPage 占쎌��눧占�
 	public int nextPage(int pageNum) {
 		String SQL = "SELECT * FROM board ORDER BY num DESC limit ?, 3";
@@ -82,8 +102,8 @@ public class BoardDAO {
 		return -1;
 	}
 	
-	public BoardVO select(int num) {
-		String SQL = "SELECT * FROM board where num = ?";
+	public BoardVO select(int num) {	  
+		String SQL = "SELECT b.*, username FROM board b JOIN member ON b.id = member.id where num = ?";		
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -97,6 +117,8 @@ public class BoardDAO {
 				board.setTitle(rs.getString("title"));
 				board.setContent(rs.getString("content"));
 				board.setWritedate(rs.getString("writedate"));
+				board.setReadcount(Integer.parseInt(rs.getString("readcount")));
+				board.setUsername(rs.getString("username"));
 				return board;
 			}
 		} catch (Exception e) {

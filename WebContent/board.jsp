@@ -14,7 +14,7 @@
     </div>
     <div id="middle">
       <div id="contbody" class="clearfix">
-        
+        <%@ include file="/layout/lnb.jsp"%>
         <div id="contentcore" class="excludeSearch">
           <div class="naviandtitle">
             <h3>새소식</h3>
@@ -65,12 +65,9 @@
                       <c:forEach var="item" items="${list}">
                         <tr>
                           <td>${item.num}</td>
-                          <td class="title">
-                            <a href="<%=request.getContextPath()%>/board?cmd=board_view&num=${item.num}">
-                              ${item.title} </a>
-                          </td>
+                          <td class="title"><a href="<%=request.getContextPath()%>/board?cmd=board_view&num=${item.num}"> ${item.title} </a></td>
                           <td>${item.writedate}</td>
-                          <td>${item.readcount}</td>
+                          <td>${item.readcount}오예</td>
                           <td>수정구</td>
                           <td>${item.username}</td>
                         </tr>
@@ -85,43 +82,19 @@
                 </table>
               </div>
             </form>
-            <c:if test="${!empty list}">
-              <!-- Pagination -->
-              <%
-                int pageNum = 0;
-                if (request.getAttribute("pageNum") != null) {
-                	pageNum = (Integer) request.getAttribute("pageNum");
-              	}
-
-    			BoardDAO dao = new BoardDAO();
-    			int result = dao.nextPage(pageNum + 3);
-    			pageContext.setAttribute("result", result);
-              %>
-              <c:choose>
-                <c:when test="${pageNum == 0}">
-                  <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item disabled"><a class="page-link" href="#">&larr; Prev</a></li>
-                    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=${pageNum+3}">Next &rarr;</a></li>
-                  </ul>
-                </c:when>
-                <c:when test="${result == 1}">
-                  <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=${pageNum-3}">&larr; Prev</a></li>
-                    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=${pageNum+3}">Next &rarr;</a></li>
-                  </ul>
-                </c:when>
-                <c:when test="${result == -1}">
-                  <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board?cmd=board_list&pageNum=${pageNum-3}">&larr; Prev</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#">Next &rarr;</a></li>
-                  </ul>
-                </c:when>
-              </c:choose>
-            </c:if>
             <!-- 페이징 -->
             <div class="pagingWrap">
               <p class="paging">
-                <span class="current">1</span><a href="#page" class="" onclick="setPageLink(2);">2</a><a href="#page" class="" onclick="setPageLink(3);">3</a><a href="#page" class="" onclick="setPageLink(4);">4</a><a href="#page" class="" onclick="setPageLink(5);">5</a><a href="#page" class="" onclick="setPageLink(6);">6</a><a href="#page" class="" onclick="setPageLink(7);">7</a><a href="#page" class="" onclick="setPageLink(8);">8</a><a href="#page" class="" onclick="setPageLink(9);">9</a><a href="#page" class="" onclick="setPageLink(10);">10</a><a href="#page" class="btn-paging next" onclick="setPageLink(11);">다음 10개 목록으로 이동</a><a href="#page" class="btn-paging last" onclick="setPageLink(141);">마지막 목록으로 이동</a>
+                <c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
+                  <c:choose>
+                    <c:when test="${i eq paging.pageNo}">
+                      <span class="current">${i }</span>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="#page" class="" onclick="javascript:PageMove(${i});">${i }</a>
+                    </c:otherwise>
+                  </c:choose>
+                </c:forEach>
               </p>
             </div>
             <!-- //페이징 -->
@@ -151,6 +124,9 @@
   </div>
   <script type="text/javascript">
       initMenu(6, <%=request.getAttribute("categoryNum")%>, 0, 0, 0);
-    </script>
+  	function PageMove(page){
+  		location.href = "http://localhost:8081/Blog4/board?cmd=board_list&page="+page+"&categoryNum="+<%=request.getAttribute("categoryNum")%>
+  	}      
+  	</script>
 </body>
 </html>

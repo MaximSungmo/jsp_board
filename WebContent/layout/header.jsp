@@ -20,7 +20,9 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.alphanum.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/gnb.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/js/validation.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/validation.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/editor/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
 <script type="text/javascript">
   $(function() {
     $("#searchWord").keypress(function(e) {

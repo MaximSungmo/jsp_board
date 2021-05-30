@@ -31,15 +31,18 @@ public class BoardViewAction implements Action {
     int result = dao.readcount(num);
     
     BoardVO board = dao.select(num);
-    List<ReBoardVO> reboards = rdao.select_list(num);
+    List<ReBoardVO> reboards = rdao.select_list(num);        
+    
     
     if (result == -1 && board == null) {
       Script.moving(response, "DB 에러");
     } else {
       board.setTitle(MyUtil.getReplace(board.getTitle()));
       board.setContent(MyUtil.makeYoutube(board.getContent()));
+      board.setUsername(board.getUsername());
       request.setAttribute("board", board);
       request.setAttribute("reboards", reboards);
+      System.out.println(board.getUsername());
       
       RequestDispatcher dis = request.getRequestDispatcher(url);
       dis.forward(request, response);
