@@ -13,16 +13,15 @@ public class MemberDAO {
 	
 	// insert
 	public int insert(MemberVO member) {
-		String SQL = "INSERT INTO member_2 VALUES(?,?,?,?,?,?,false)";
+		String SQL = "INSERT INTO member VALUES(?,?,?,?,true,?)";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPassword());
-			pstmt.setString(3, member.getUsername());
-			pstmt.setString(4, member.getRoadFullAddr());
-			pstmt.setString(5, member.getEmail());
-			pstmt.setString(6, member.getSalt()) ;
+			pstmt.setString(3, member.getUsername());			
+			pstmt.setString(4, member.getEmail());
+			pstmt.setString(5, member.getSalt()) ;
 			pstmt.executeUpdate();
 			return 1;
 		} catch (Exception e) {
@@ -35,7 +34,7 @@ public class MemberDAO {
 	
 	// select_id
 		public int select_id(MemberVO member) {
-			String SQL = "SELECT emailcheck FROM member_2 WHERE id = ? AND password= ?";
+			String SQL = "SELECT emailcheck FROM member WHERE id = ? AND password= ?";
 			Connection conn = DBManager.getConnection();
 			try {
 				pstmt = conn.prepareStatement(SQL);
@@ -60,7 +59,7 @@ public class MemberDAO {
 		}
 	
 	public int select_emailcheck(String id) {
-		String SQL = "SELECT emailcheck FROM member_2 WHERE id = ?";
+		String SQL = "SELECT emailcheck FROM member WHERE id = ?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -83,7 +82,7 @@ public class MemberDAO {
 	}
 	
 	public String select_email(String id) {
-		String SQL = "SELECT email FROM member_2 WHERE id = ?";
+		String SQL = "SELECT email FROM member WHERE id = ?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -102,7 +101,7 @@ public class MemberDAO {
 	}
 	
 	public String select_salt(String id) {
-		String SQL = "SELECT salt FROM member_2 WHERE id = ?";
+		String SQL = "SELECT salt FROM member WHERE id = ?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -121,7 +120,7 @@ public class MemberDAO {
 	}
 	
 	public int update_emailcheck(String id) {
-		String SQL = "UPDATE member_2 SET emailcheck = true WHERE id = ?";
+		String SQL = "UPDATE member SET emailcheck = true WHERE id = ?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -137,7 +136,7 @@ public class MemberDAO {
 	}
 	
 	public MemberVO select(String id) {
-		String SQL = "SELECT * FROM member_2 WHERE id = ?";
+		String SQL = "SELECT * FROM member WHERE id = ?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -147,8 +146,7 @@ public class MemberDAO {
 			if(rs.next()) {
 				MemberVO member = new MemberVO();
 				member.setId(rs.getString("id"));
-				member.setUsername(rs.getString("username"));
-				member.setRoadFullAddr(rs.getString("roadFullAddr"));
+				member.setUsername(rs.getString("username"));				
 				member.setEmail(rs.getString("email"));
 				member.setEmailcheck(rs.getBoolean("emailcheck"));
 				return member;
@@ -160,15 +158,14 @@ public class MemberDAO {
 	}
 	
 	public int update(MemberVO member) {
-		String SQL = "UPDATE member_2 SET password = ?, "
-				+ "roadFullAddr = ?, email = ? WHERE id = ?";
+		String SQL = "UPDATE member SET password = ?, "
+				+ "email = ? WHERE id = ?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getRoadFullAddr());
-			pstmt.setString(3, member.getEmail());
-			pstmt.setString(4, member.getId());
+			pstmt.setString(1, member.getPassword());			
+			pstmt.setString(2, member.getEmail());
+			pstmt.setString(3, member.getId());
 			pstmt.executeUpdate();
 			return 1;
 		} catch (Exception e) {

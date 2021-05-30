@@ -21,7 +21,7 @@ public class BoardUpdateAction implements Action{
 		BoardVO board = dao.select(num);
 		
 		if(board == null) {
-			Script.moving(response, "DB ì—ëŸ¬");
+			Script.moving(response, "DB ¿¡·¯");
 		}else {
 			request.setAttribute("board", board);
 			RequestDispatcher dis = request.getRequestDispatcher(url);

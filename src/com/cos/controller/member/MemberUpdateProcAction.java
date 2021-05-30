@@ -22,20 +22,18 @@ public class MemberUpdateProcAction implements Action {
 		
 		String id = request.getParameter("id");
 		String salt = dao.select_salt(id);
-		String password = SHA256.getEncrypt(request.getParameter("password"), salt);
-		String roadFullAddr = request.getParameter("roadFullAddr");
+		String password = SHA256.getEncrypt(request.getParameter("password"), salt);		
 		String email = request.getParameter("email");
 		
 		member.setId(id);
-		member.setPassword(password);
-		member.setRoadFullAddr(roadFullAddr);
+		member.setPassword(password);		
 		member.setEmail(email);
 		
 		int result = dao.update(member);
 		if(result == 1) {
-			Script.moving(response, "회원정보 수정 완료", url);
+			Script.moving(response, "회원 정보 변경하였습니다.", url);
 		}else if(result == -1) {
-			Script.moving(response, "DB 에러");
+			Script.moving(response, "DB �뿉�윭");
 		}
 	}	
 	

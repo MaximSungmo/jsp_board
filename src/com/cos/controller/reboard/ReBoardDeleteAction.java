@@ -10,25 +10,24 @@ import com.cos.action.Action;
 import com.cos.dao.ReBoardDAO;
 import com.cos.util.Script;
 
-public class ReBoardDeleteAction implements Action{
-	
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int num= Integer.parseInt(request.getParameter("num"));
-		int renum= Integer.parseInt(request.getParameter("renum"));
-		
-		String url = "board?cmd=board_view&num="+num;
-		
-		ReBoardDAO dao = new ReBoardDAO();
-		int result = dao.delete(num, renum);
-		
-		if(result == 1) {
-			Script.moving(response, "靷牅靹标车", url);
-		}else if(result == -1) {
-			Script.moving(response, "DB鞐愲煬");
-		}
-			
-		
-	}
-
+public class ReBoardDeleteAction implements Action {
+  
+  @Override
+  public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    int num = Integer.parseInt(request.getParameter("num"));
+    int renum = Integer.parseInt(request.getParameter("renum"));
+    
+    String url = "board?cmd=board_view&num=" + num;
+    
+    ReBoardDAO dao = new ReBoardDAO();
+    int result = dao.delete(num, renum);
+    
+    if (result == 1) {
+      Script.moving(response, "昏力己傍", url);
+    } else if (result == -1) {
+      Script.moving(response, "DB俊矾");
+    }
+    
+  }
+  
 }

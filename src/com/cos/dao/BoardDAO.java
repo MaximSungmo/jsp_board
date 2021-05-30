@@ -14,7 +14,7 @@ public class BoardDAO {
 	private ResultSet rs;
 	
 	public int insert(BoardVO board) {
-		String SQL = "INSERT INTO board_2(title, content, writedate, id,readcount) VALUE(?,?,now(),?,0)";
+		String SQL = "INSERT INTO board(title, content, writedate, id, readcount) VALUE(?,?,now(),?,0)";
 		Connection conn= DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -32,7 +32,7 @@ public class BoardDAO {
 		return -1;
 	}
 	public List<BoardVO> select_paging(int pageNum){
-		String SQL = "SELECT * FROM board_2 ORDER BY num DESC limit ?, 3";
+		String SQL = "SELECT * FROM board ORDER BY num DESC limit ?, 3";
 		Connection conn = DBManager.getConnection();
 		
 		try {
@@ -59,9 +59,9 @@ public class BoardDAO {
 		return null;
 	}
 	
-	// nextPage �쑀臾�
+	// nextPage 占쎌��눧占�
 	public int nextPage(int pageNum) {
-		String SQL = "SELECT * FROM board_2 ORDER BY num DESC limit ?, 3";
+		String SQL = "SELECT * FROM board ORDER BY num DESC limit ?, 3";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -80,7 +80,7 @@ public class BoardDAO {
 	}
 	
 	public BoardVO select(int num) {
-		String SQL = "SELECT * FROM board_2 where num = ?";
+		String SQL = "SELECT * FROM board where num = ?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -105,7 +105,7 @@ public class BoardDAO {
 	}
 	
 	public int delete(int num) {
-		String SQL = "DELETE FROM board_2 WHERE num = ?";
+		String SQL = "DELETE FROM board WHERE num = ?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -122,7 +122,7 @@ public class BoardDAO {
 	}
 	
 	public int update(BoardVO board) {
-		String SQL = "UPDATE board_2 SET title = ?, content = ? WHERE num =?";
+		String SQL = "UPDATE board SET title = ?, content = ? WHERE num =?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -141,7 +141,7 @@ public class BoardDAO {
 	}
 	
 	public int checkId(int num, String sessionId) {
-		String SQL = "SELECT * FROM board_2 WHERE id = ? and num = ?";
+		String SQL = "SELECT * FROM board WHERE id = ? and num = ?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -160,7 +160,7 @@ public class BoardDAO {
 	}
 	
 	public int readcount(int num) {
-		String SQL = "UPDATE board_2 SET readcount = readcount+1 WHERE num =?";
+		String SQL = "UPDATE board SET readcount = readcount+1 WHERE num =?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -177,7 +177,7 @@ public class BoardDAO {
 	}
 	
 	public List<BoardVO> hotpost(){
-		String SQL = "SELECT num, title, readcount FROM board_2 ORDER BY readcount DESC limit 3";
+		String SQL = "SELECT num, title, readcount FROM board ORDER BY readcount DESC limit 3";
 		Connection conn = DBManager.getConnection();
 		
 		try {

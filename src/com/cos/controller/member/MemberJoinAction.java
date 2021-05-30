@@ -18,15 +18,14 @@ public class MemberJoinAction implements Action{
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "member?cmd=emailSend";
+		String url = "member?cmd=member_login";
 		
 		MemberVO member = new MemberVO();
 		MemberDAO dao = new MemberDAO();	
 		
 		String id = null;
 		String password = null;
-		String username = null;
-		String roadFullAddr = null;
+		String username = null;		
 		String email = null;
 		String salt = SHA256.generateSalt();
 		
@@ -35,22 +34,17 @@ public class MemberJoinAction implements Action{
 		}
 		if(request.getParameter("password") != null) {
 			password = request.getParameter("password");
-			//패스워드를 SHA256으로 해쉬하기
 			password = SHA256.getEncrypt(password, salt);
 		}
 		if(request.getParameter("username") != null) {
 			username = request.getParameter("username");
-		}
-		if(request.getParameter("roadFullAddr") != null) {
-			roadFullAddr = request.getParameter("roadFullAddr");
 		}
 		if(request.getParameter("email") != null) {
 			email = request.getParameter("email");
 		}
 		member.setId(id);
 		member.setPassword(password);
-		member.setUsername(username);
-		member.setRoadFullAddr(roadFullAddr);
+		member.setUsername(username);		
 		member.setEmail(email);
 		member.setSalt(salt);
 		
@@ -59,9 +53,9 @@ public class MemberJoinAction implements Action{
 		if(result == 1) {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", member.getId());
-			Script.moving(response, "구글 인증 페이지", url);
+			Script.moving(response, "가입완료", url);
 		}else if(result == -1) {
-			Script.moving(response, "데이터베이스 에러");
+			Script.moving(response, "가입실패");
 		}
 	}
 }

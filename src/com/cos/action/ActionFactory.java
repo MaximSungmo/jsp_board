@@ -6,7 +6,6 @@ import com.cos.controller.board.BoardUpdateAction;
 import com.cos.controller.board.BoardUpdateProcAction;
 import com.cos.controller.board.BoardViewAction;
 import com.cos.controller.board.BoardWriteAction;
-import com.cos.controller.member.EmailSendAction;
 import com.cos.controller.member.MemberJoinAction;
 import com.cos.controller.member.MemberLoginAction;
 import com.cos.controller.member.MemberLogoutAction;
@@ -54,8 +53,6 @@ public class ActionFactory {
 			return new ReBoardReplyAction();
 		}else if(cmd.equals("reboard_delete")) {
 			return new ReBoardDeleteAction();
-		}else if(cmd.equals("emailSend")) {
-			return new EmailSendAction();
 		}
 		return null;
 	}
