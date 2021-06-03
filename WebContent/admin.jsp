@@ -42,21 +42,18 @@
                 <table class="board-list">
                   <caption>게시물 리스트</caption>
                   <colgroup>
-                    <col style="width: 60px">
-                    <col>
-                    <col style="width: 100px">
-                    <col style="width: 70px">
-                    <col style="width: 100px">
-                    <col style="width: 100px">
-                    <col style="width: 50px">
+                    <col style="width: 15%">
+                    <col style="width: 40%">
+                    <col style="width: 15%">
+                    <col style="width: 15%">
+                    <col style="width: 15%">       
                   </colgroup>
                   <thead>
                     <tr>
                       <th scope="col">번호</th>
                       <th scope="col">제목</th>
                       <th scope="col">등록일</th>
-                      <th scope="col">조회수</th>
-                      <th scope="col">분류</th>
+                      <th scope="col">조회수</th>                      
                       <th scope="col">작성부서</th>
                     </tr>
                   </thead>
@@ -68,8 +65,7 @@
                           <td>${item.num}</td>
                           <td class="title"><a href="<%=request.getContextPath()%>/board?cmd=board_view&num=${item.num}"> ${item.title} </a></td>
                           <td>${item.writedate}</td>
-                          <td>${item.readcount}</td>
-                          <td>${item.sub_category}</td>
+                          <td>${item.readcount}</td>                          
                           <td>${item.username}</td>
                         </tr>
                       </c:forEach>

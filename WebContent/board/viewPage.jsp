@@ -33,11 +33,7 @@
                 <col style="width: 120px;">
                 <col>
               </colgroup>
-              <tbody>
-                <tr>
-                  <th scope="row">분류</th>
-                  <td>${board.subCategory}</td>
-                </tr>
+              <tbody>                
                 <tr>
                   <th scope="row">제목</th>
                   <td>${board.title}</td>
