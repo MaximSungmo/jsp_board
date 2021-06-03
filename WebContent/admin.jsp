@@ -69,7 +69,7 @@
                           <td class="title"><a href="<%=request.getContextPath()%>/board?cmd=board_view&num=${item.num}"> ${item.title} </a></td>
                           <td>${item.writedate}</td>
                           <td>${item.readcount}</td>
-                          <td>수정구</td>
+                          <td>${item.sub_category}</td>
                           <td>${item.username}</td>
                         </tr>
                       </c:forEach>

@@ -22,6 +22,8 @@ public class BoardUpdateProcAction implements Action {
     board.setNum(Integer.parseInt(request.getParameter("num")));
     board.setTitle(request.getParameter("title"));
     board.setContent(request.getParameter("content"));
+    board.setSubCategory(request.getParameter("subCategory"));
+    System.out.println("와우:2 " + request.getParameter("subCategory"));    
     
     String url = "board?cmd=board_view&num=" + board.getNum();
     

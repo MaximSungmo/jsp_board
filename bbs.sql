@@ -16,13 +16,14 @@ CREATE TABLE board (
 	num int AUTO_INCREMENT primary key,
     title varchar(50),
     content text,
+    sub_category varchar(30),
     writedate datetime,
     id varchar(30),
     readcount int,
     category_num int
 );
-insert into board values(default, 'test', 'test content', now(), 'admin', 1, 0);
-insert into board values(default, 'test', 'test content', now(), 'admin', 1, 1);
+insert into board values(default, 'test', 'test content', '수정구', now(), 'admin', 1, 0);
+insert into board values(default, 'test', 'test content', '수정구', now(), 'admin', 1, 1);
 
 
 DROP TABLE reboard;

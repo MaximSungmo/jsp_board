@@ -33,7 +33,9 @@ public class BoardWriteAction implements Action {
         board.setId(id);
         board.setTitle(request.getParameter("title"));
         board.setCategoryNum(Integer.parseInt(request.getParameter("categoryNum")));
-        board.setContent(request.getParameter("content"));            
+        board.setContent(request.getParameter("content"));       
+        board.setSubCategory(request.getParameter("subCategory"));
+        System.out.println("와우: 2" + request.getParameter("subCategory"));        
         
         int result2 = dao.insert(board);
         if (result2 == 1) {

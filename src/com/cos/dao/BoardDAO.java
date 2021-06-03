@@ -14,14 +14,15 @@ public class BoardDAO {
 	private ResultSet rs;
 	
 	public int insert(BoardVO board) {
-		String SQL = "INSERT INTO board(title, content, writedate, id, readcount, category_num) VALUE(?,?,now(),?,0,?)";
+		String SQL = "INSERT INTO board(title, content, sub_category, writedate, id, readcount, category_num) VALUE(?,?,?,now(),?,0,?)";
 		Connection conn= DBManager.getConnection();
 		try {			
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
-			pstmt.setString(3, board.getId());
-			pstmt.setInt(4, board.getCategoryNum());
+			pstmt.setString(3, board.getSubCategory());
+			pstmt.setString(4, board.getId());
+			pstmt.setInt(5, board.getCategoryNum());
 			pstmt.executeUpdate();
 			return 1;
 		} catch (Exception e) {
@@ -43,13 +44,14 @@ public class BoardDAO {
 			pstmt.setInt(3, pageSize);
 			rs = pstmt.executeQuery();
 			List<BoardVO> list = new ArrayList<>();
-			while(rs.next()) {
+			while(rs.next()) {			  
 				BoardVO board = new BoardVO();
 				board.setNum(rs.getInt("num"));
 				board.setId(rs.getString("id"));
 				board.setUsername(rs.getString("username"));
 				board.setTitle(rs.getString("title"));
-				board.setContent(rs.getString("content"));
+				board.setContent(rs.getString("content"));				
+				board.setSubCategory(rs.getString("sub_category"));				
 				board.setWritedate(rs.getString("writedate"));
 				board.setReadcount(rs.getInt("readcount"));
 				board.setCategoryNum(rs.getInt("category_num"));
@@ -117,6 +119,7 @@ public class BoardDAO {
 				board.setId(rs.getString("id"));
 				board.setTitle(rs.getString("title"));
 				board.setContent(rs.getString("content"));
+				board.setSubCategory(rs.getString("sub_category"));
 				board.setWritedate(rs.getString("writedate"));
 				board.setReadcount(Integer.parseInt(rs.getString("readcount")));
 				board.setUsername(rs.getString("username"));
@@ -148,13 +151,14 @@ public class BoardDAO {
 	}
 	
 	public int update(BoardVO board) {
-		String SQL = "UPDATE board SET title = ?, content = ? WHERE num =?";
+		String SQL = "UPDATE board SET title = ?, content = ?, sub_category = ? WHERE num =?";
 		Connection conn = DBManager.getConnection();
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
-			pstmt.setInt(3, board.getNum());
+			pstmt.setString(3, board.getSubCategory());
+			pstmt.setInt(4, board.getNum());			
 			pstmt.executeUpdate();
 			return 1;
 		} catch (Exception e) {

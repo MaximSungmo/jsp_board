@@ -16,6 +16,7 @@
           <div>          
           <c:choose>
             <c:when test="${sessionScope.id eq 'admin'}">             
+              <a style="color: blue;" href="<%=request.getContextPath()%>/board?cmd=board_update&num=${board.num}">수정</a>
               <a style="color: blue;" href="<%=request.getContextPath()%>/board?cmd=board_delete&num=${board.num}">삭제</a>
             </c:when>
             <c:when test="${board.id eq sessionScope.id} ">
@@ -35,7 +36,7 @@
               <tbody>
                 <tr>
                   <th scope="row">분류</th>
-                  <td>수정구</td>
+                  <td>${board.subCategory}</td>
                 </tr>
                 <tr>
                   <th scope="row">제목</th>

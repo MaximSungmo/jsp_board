@@ -23,6 +23,14 @@
                 <input type="text" name="title" value="" style="width:100%" required autofocus>
               </div>
               <div>
+                <label >분류</label> <br>
+                <select name="subCategory">
+                  <option value="수정구">수정구</option>
+                  <option value="중원구">중원구</option>
+                  <option value="분당구">분당구</option>
+                </select>                
+              </div>
+              <div>
                 <label>Content</label>
                 <textarea id="textAreaContent" name="content" rows="15" cols="80" style="width: 100%"></textarea>
               </div>

@@ -4,6 +4,7 @@ public class BoardVO {
   private int num;
   private String title;
   private String content;
+  private String subCategory;
   private String writedate;
   private String id;
   private int readcount;
@@ -73,5 +74,13 @@ public class BoardVO {
 
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  public String getSubCategory() {
+    return subCategory;
+  }
+
+  public void setSubCategory(String subCategory) {
+    this.subCategory = subCategory;
   }
 }

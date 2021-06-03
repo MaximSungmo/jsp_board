@@ -61,7 +61,7 @@
         <img src="<%=request.getContextPath()%>/images/logo.png" class="logo" alt="테스트보건소(수정구/중원구/분당구)"> <a href="#close" class="close"><span>메뉴 닫기</span></a>
       </div>
       <ul id="gnb" class="clearfix" style="overflow: hidden;">
-        <li id="gnb1" class="health_top_menu"><a href="#">보건소 안내</a>
+        <li id="gnb1" class="health_top_menu"><a href="<%=request.getContextPath()%>/sample/sample.jsp">보건소 안내</a>
           <ul style="display: none;">
             <li id="gnb1_1"><a class="disabled">보건소 소개</a></li>
             <li id="gnb1_2"><a class="disabled">이용시간/휴무일</a></li>

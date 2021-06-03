@@ -38,11 +38,11 @@ public class BoardListAction implements Action {
     page = (page - 1) * 10; // select해오는 기준을 구한다.
     
     List<BoardVO> list = dao.select_paging(Integer.parseInt(categoryNum), page, paging.getPageSize());
-    
+    System.out.println(list);
     if (list.isEmpty()) {
       request.setAttribute("list", null);
       request.setAttribute("paging", paging);
-      request.setAttribute("categoryNum", categoryNum);
+      request.setAttribute("categoryNum", categoryNum);      
       RequestDispatcher dis = request.getRequestDispatcher(url);
       dis.forward(request, response);
     } else {
